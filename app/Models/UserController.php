@@ -15,9 +15,12 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email', // Perbaikan pada nama tabel
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|max:100',
         ]);
+
+        // Simpan ke database jika ada model User
+        // User::create($request->all());
 
         return redirect()->back()->with('success', 'Pesan Anda telah dikirim');
     }
